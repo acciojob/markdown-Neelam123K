@@ -29,7 +29,7 @@ function Markdown() {
   return (
     <div className="app">
       <textarea className="textarea" onChange={handleChange} />
-      <ReactMarkdown className="preview">{markdown}</ReactMarkdown>
+      <ReactMarkdown className="preview" source={markdown} />
     </div>
   );
 }
