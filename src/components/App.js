@@ -1,19 +1,33 @@
-import React from "react";
-import { useState } from "react";
-import "../styles/App.css";
+import React, { useState, useEffect } from "react";
+import ReactMarkdown from "react-markdown";
 
-export default function App() {
-    let [text,Settext]=useState('')
-    function changetext(event){
-        Settext(event.target.value)
-    }
-    return (
-        <div className='app'>
-            <div className='preview'>
-            <h1>Heading</h1><br></br><br></br><span>This is some <strong>bold</strong> text.</span>  
-             <textarea onChange={text}>
-            </textarea>   
-            </div>
-        </div>
-    )
-}
+const App = () => {
+  const [markdown, setMarkdown] = useState("# Hello, Markdown!");
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setLoading(false);
+    }, 1000); 
+  }, []);
+
+  return (
+    <div>
+      {loading ? (
+        <h2>Loading...</h2>
+      ) : (
+        <>
+          <textarea value={markdown}
+            onChange={(e) => setMarkdown(e.target.value)}
+          />
+
+          <div>
+            <ReactMarkdown>{markdown}</ReactMarkdown>
+          </div>
+        </>
+      )}
+    </div>
+  );
+};
+
+export default App;
