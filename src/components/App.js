@@ -1,33 +1,36 @@
 import React, { useState, useEffect } from "react";
 import ReactMarkdown from "react-markdown";
 
-const App = () => {
-  const [markdown, setMarkdown] = useState("# Hello, Markdown!");
+function Markdown() {
+  const [markdown, setMarkdown] = useState("");
   const [loading, setLoading] = useState(true);
 
+  const handleChange = (e) => {
+    setMarkdown(e.target.value);
+  };
+
+  const changeLoadingVar = () => {
+    setLoading(false);
+  };
+
   useEffect(() => {
-    setTimeout(() => {
-      setLoading(false);
-    }, 1000); 
+    setTimeout(changeLoadingVar, 3000);
   }, []);
 
-  return (
-    <div>
-      {loading ? (
-        <h2>Loading...</h2>
-      ) : (
-        <>
-          <textarea value={markdown}
-            onChange={(e) => setMarkdown(e.target.value)}
-          />
+  if (loading) {
+    return (
+      <div className="loading">
+        <h1>Loading...</h1>
+      </div>
+    );
+  }
 
-          <div>
-            <ReactMarkdown>{markdown}</ReactMarkdown>
-          </div>
-        </>
-      )}
+  return (
+    <div className="app">
+      <textarea className="textarea" onChange={handleChange} />
+      <ReactMarkdown className="preview">{markdown}</ReactMarkdown>
     </div>
   );
-};
+}
 
-export default App;
+export default Markdown;
