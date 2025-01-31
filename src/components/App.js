@@ -12,7 +12,7 @@ function Markdown() {
   const changeLoadingVar = () => {
     setLoading(false);
   };
-
+// UseEffect 
   useEffect(() => {
     setTimeout(changeLoadingVar, 3000);
   }, []);
