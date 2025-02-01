@@ -27,6 +27,7 @@ function Markdown() {
 
   return (
     <div className="app">
+      {/* text area */}
       <textarea className="textarea" onChange={handleChange} />
       <ReactMarkdown className="preview">{markdown}</ReactMarkdown>
     </div>
